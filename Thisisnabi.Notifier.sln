@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6B300BA6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifier", "src\Notifier\Notifier.csproj", "{0CC3C4C7-C5F1-4960-9F4C-9AB334BFA106}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifier.UnitTests", "tests\Notifier.UnitTests\Notifier.UnitTests.csproj", "{B23B82CA-58F7-4578-A35C-F5E181086579}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,11 +21,19 @@ Global
 		{0CC3C4C7-C5F1-4960-9F4C-9AB334BFA106}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CC3C4C7-C5F1-4960-9F4C-9AB334BFA106}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CC3C4C7-C5F1-4960-9F4C-9AB334BFA106}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B23B82CA-58F7-4578-A35C-F5E181086579}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B23B82CA-58F7-4578-A35C-F5E181086579}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B23B82CA-58F7-4578-A35C-F5E181086579}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B23B82CA-58F7-4578-A35C-F5E181086579}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0CC3C4C7-C5F1-4960-9F4C-9AB334BFA106} = {A57DA933-CFE1-4A26-92B2-5BE0A9AC597E}
+		{B23B82CA-58F7-4578-A35C-F5E181086579} = {6B300BA6-DA39-4BCB-8347-9CF0BE8E9C0A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B473630E-1A02-4B71-8065-5480A4BFDCED}
 	EndGlobalSection
 EndGlobal
