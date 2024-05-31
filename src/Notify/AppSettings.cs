@@ -8,6 +8,8 @@ public class AppSettings
 
     public FeatureConfiguration Features { get; set; } = null!;
 
+    public string BaseUrl { get; set; } = null!;
+
 }
 
 public class SvcDbContextConfiguraion

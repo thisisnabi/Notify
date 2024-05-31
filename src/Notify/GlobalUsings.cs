@@ -20,3 +20,5 @@ global using Notify.Common.Inbox;
 global using Notify.Features.Sms.Messages;
 global using Notify.Features.Sms;
 global using Notify.Features.Sms.Providers;
+global using Notify.Features.Email.Messages;
+global using Notify.Features.Email;

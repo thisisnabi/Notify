@@ -4,7 +4,6 @@ public static class SmsFeatureConfigure
 {
     public static IServiceCollection ConfigureSmsFeature(this IServiceCollection services, IConfiguration configuration)
     {
-
         services.AddHostedService<InquirySmsBackgroundService>();
         services.AddScoped<SmsService>();
 

@@ -16,8 +16,4 @@
 	  <PackageReference Include="Carter" Version="8.1.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Email\Endpoints\" />
-  </ItemGroup>
-
 </Project>

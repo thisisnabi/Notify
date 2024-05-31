@@ -30,7 +30,7 @@ public class SmsTrace
         Message = message,
         RefrenceId = referenceId,
         Status = SmsTraceStatus.RequiredInquiry,
-        CreatedOn = DateTime.Now,
+        CreatedOn = DateTime.UtcNow,
         Provider = provider,
         MessageId = messageId,
     };

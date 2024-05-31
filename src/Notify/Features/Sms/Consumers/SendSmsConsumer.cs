@@ -1,6 +1,6 @@
 ﻿namespace Notify.Features.Sms.Consumers;
 
-public class SmsNotifyConsumer(InboxService inboxService)
+public class SendSmsConsumer(InboxService inboxService)
     : InboxConsumer<SendSmsMessage>(inboxService)
 {
 
