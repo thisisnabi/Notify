@@ -1,25 +1,25 @@
 # Notify as a Service
 
-This is a Notify service implemented in ASP.NET Core and MongoDB. It allows you to send `sync/async` message to user, with delivery checks.
+Notify as a Service is an advanced notification system built using ASP.NET Core and MongoDB. It allows seamless and efficient sending of synchronous and asynchronous messages, ensuring reliable delivery through integrated checks.
 
 ## Features
+- Email Notifications: Send emails using REST and messaging approaches.
+- SMS Notifications: Dispatch SMS via REST and messaging methods.
+- Multi-provider Support: Integrate with various SMS providers for flexibility.
+- Data Persistence: Utilizes MongoDB for storing and managing data.
 
-- Sending Email by REST & Messaging Approach
-- Sending SMS by REST & Messaging Approach
-- Support Multi third parties for SMS Provider
-- MongoDB database for persisting data
 
 ## Technologies Used
 
-- ASP.NET Core
-- MongoDB
-- C#
-- Minimal APIs
-- Webhook Pattern
-- Composite Pattern
-- Background Services
-- Masstransit
-- Rabbitmq
+- **ASP.NET Core**: Foundation of the application, providing a robust and scalable web framework.
+- **MongoDB**: NoSQL database for efficient data storage and retrieval.
+- **C#**: Core programming language for application logic.
+- **Minimal** APIs: Simplified API creation for streamlined development.
+- **Webhook** Pattern: Enables real-time notifications and integration with other services.
+- **Composite Pattern**: Ensures flexible and scalable notification structures.
+- **Background Services**: Handles long-running operations and tasks efficiently.
+- **MassTransit**: Facilitates message-based communication within microservices.
+- **RabbitMQ**: Reliable messaging broker for asynchronous communication.
 
 ## Installation
 
