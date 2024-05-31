@@ -1,4 +1,4 @@
-namespace Notify.Modules.Email;
+namespace Notify.Hosts.WebApp;
 
 public class WeatherForecast
 {

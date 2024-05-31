@@ -1,0 +1,6 @@
+@Notify.Hosts.WebApp_HostAddress = http://localhost:5047
+
+GET {{Notify.Hosts.WebApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
