@@ -4,7 +4,7 @@ public class TrackingCallbackEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapPost("/email/tracking/{track_id:requid}", async (
+        app.MapGet("/email/tracking/{track_id:required}", async (
             [FromRoute(Name = "track_id")] string trackId, 
             ILogger<TrackingCallbackEndpoint> logger,
             EmailDbContext dbContext, 
@@ -22,6 +22,6 @@ public class TrackingCallbackEndpoint : ICarterModule
             await dbContext.SaveChangesAsync(cancellationToken);
 
             return Results.Ok();
-        });
+        }).WithTags("Email");
     }
 }

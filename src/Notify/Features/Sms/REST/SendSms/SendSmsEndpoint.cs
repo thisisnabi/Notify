@@ -8,6 +8,6 @@ public class SendSmsEndpoint : ICarterModule
         {
             var notify = new SendSmsMessage(requset.MessageId, requset.Mobile, requset.Message);
             await mediator.Publish(notify);
-        });
+        }).WithTags("Sms");
     }
 }

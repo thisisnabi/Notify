@@ -21,6 +21,6 @@ public class GetEmailTraceEndpoint : ICarterModule
                 smsTrace.CreatedOn,
                 smsTrace.Status
             });
-        });
+        }).WithTags("Email");
     }
 }
