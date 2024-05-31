@@ -7,7 +7,7 @@ global using MediatR;
 global using MongoDB.EntityFrameworkCore;
 global using MongoDB.EntityFrameworkCore.Extensions;
 global using MongoDB.Bson;
-
+global using MassTransit;
 
 // solution
 global using Notify.Common;
