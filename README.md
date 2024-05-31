@@ -15,7 +15,8 @@ This is a Notify service implemented in ASP.NET Core and MongoDB. It allows you 
 - MongoDB
 - C#
 - Minimal APIs
-- Webhook
+- Webhook Pattern
+- Composite Pattern
 - Background Services
 - Masstransit
 - Rabbitmq
