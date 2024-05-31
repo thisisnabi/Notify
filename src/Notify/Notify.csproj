@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Notify.Modules.Sms\Notify.Modules.Sms.csproj" />
+    <Folder Include="Common\Inbox\" />
+    <Folder Include="Features\Email\" />
+    <Folder Include="Features\Sms\" />
   </ItemGroup>
 
 </Project>
