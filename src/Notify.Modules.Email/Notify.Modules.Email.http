@@ -1,0 +1,6 @@
+@Notify.Modules.Email_HostAddress = http://localhost:5186
+
+GET {{Notify.Modules.Email_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
