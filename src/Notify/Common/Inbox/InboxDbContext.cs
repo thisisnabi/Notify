@@ -2,7 +2,7 @@
 
 public class InboxDbContext : DbContext
 {
-    public InboxDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
+    public InboxDbContext(DbContextOptions<InboxDbContext> dbContextOptions) : base(dbContextOptions)
     {
 
     }

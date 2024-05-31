@@ -2,7 +2,7 @@
 
 public class SmsDbContext : DbContext
 {
-    public SmsDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
+    public SmsDbContext(DbContextOptions<SmsDbContext> dbContextOptions) : base(dbContextOptions)
     {
 
     }

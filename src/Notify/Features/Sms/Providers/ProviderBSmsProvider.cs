@@ -1,9 +1,7 @@
 ﻿namespace Notify.Features.Sms.Providers;
 
-public class ProviderBSmsProvider(HttpClient httpClient,
-                                  IOptions<AppSettings> appSettingOptions) : ISmsProvider
+public class ProviderBSmsProvider(IOptions<AppSettings> appSettingOptions) : ISmsProvider
 {
-    private readonly HttpClient _httpClient = httpClient;
     private readonly ProviderBConfiguration configuration = appSettingOptions.Value.Features.Sms.ProviderB;
 
     public string Name => "ProviderB";

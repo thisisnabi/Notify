@@ -10,7 +10,7 @@ public class SmsService(SmsDbContext dbContext, IServiceProvider serviceProvider
 
         foreach (var providerName in SmsConfiguration.Providers)
         {
-            var provider = serviceProvider.GetRequiredKeyedService<ISmsProvider>(providerName);
+            var provider = _serviceProvider.GetRequiredKeyedService<ISmsProvider>(providerName);
 
             var referenceId = await provider.SendAsync(mobile, message, cancellationToken);
 
@@ -31,7 +31,7 @@ public class SmsService(SmsDbContext dbContext, IServiceProvider serviceProvider
 
     public async Task<SmsTraceStatus> InquiryAsync(SmsTrace message, CancellationToken cancellationToken = default)
     {
-        var provider = serviceProvider.GetRequiredKeyedService<ISmsProvider>(message.Provider);
+        var provider = _serviceProvider.GetRequiredKeyedService<ISmsProvider>(message.Provider);
         return await provider.IquiryAsync(message.RefrenceId, cancellationToken);
     }
 }
