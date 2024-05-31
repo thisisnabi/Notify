@@ -1,8 +1,4 @@
-﻿
-
-using System.Reflection;
-
-namespace Notify.Common;
+﻿namespace Notify.Common;
 
 public static class DependencyInjections
 {

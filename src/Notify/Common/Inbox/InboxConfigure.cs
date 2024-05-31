@@ -1,6 +1,6 @@
 ﻿namespace Notify.Common.Inbox;
 
-public static class ConfigureInboxExtension
+public static class InboxConfigure
 {
     public static IServiceCollection ConfigureApplicationInbox(this IServiceCollection services, IConfiguration configuration)
     {

@@ -1,7 +1,7 @@
 ﻿namespace Notify.Common.Inbox;
- 
+
 public class InboxProcessBackgroundSerice(IServiceProvider serviceProvider,
-    ILogger<InboxProcessBackgroundSerice> logger)  : BackgroundService
+    ILogger<InboxProcessBackgroundSerice> logger) : BackgroundService
 {
     private readonly IServiceProvider _serviceProvider = serviceProvider;
     private readonly ILogger<InboxProcessBackgroundSerice> _logger = logger;
@@ -27,9 +27,9 @@ public class InboxProcessBackgroundSerice(IServiceProvider serviceProvider,
                 }
 
                 var msg = JsonSerializer.Deserialize(message.Content, type);
-                if (msg is INotification notify)
+                if (msg is INotification request)
                 {
-                    await _mediator.Publish(notify, stoppingToken);
+                    await _mediator.Publish(request, stoppingToken);
                 }
 
                 await _inboxService.ProcessMessagesAsync(message, stoppingToken);

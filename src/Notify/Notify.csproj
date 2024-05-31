@@ -13,11 +13,11 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 	<PackageReference Include="MassTransit" Version="8.2.2" />
 	<PackageReference Include="MassTransit.RabbitMQ" Version="8.2.2" />
+	  <PackageReference Include="Carter" Version="8.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Features\Email\Endpoints\" />
-    <Folder Include="Features\Sms\" />
   </ItemGroup>
 
 </Project>

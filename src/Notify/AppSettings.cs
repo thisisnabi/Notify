@@ -6,6 +6,8 @@ public class AppSettings
 
     public BrokerConfiguration BrokerConfiguration { get; set; } = null!;
 
+    public FeatureConfiguration Features { get; set; } = null!;
+
 }
 
 public class SvcDbContextConfiguraion
@@ -19,4 +21,9 @@ public class BrokerConfiguration
     public required string Host { get; set; }
     public required string Username { get; set; }
     public required string Password { get; set; }
+}
+
+public partial class FeatureConfiguration
+{
+
 }
