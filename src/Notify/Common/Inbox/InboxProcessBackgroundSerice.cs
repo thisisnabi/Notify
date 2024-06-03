@@ -1,10 +1,10 @@
 ﻿namespace Notify.Common.Inbox;
 
-public class InboxProcessBackgroundSerice(IServiceProvider serviceProvider,
-    ILogger<InboxProcessBackgroundSerice> logger) : BackgroundService
+public class InboxProcessBackgroundService(IServiceProvider serviceProvider,
+    ILogger<InboxProcessBackgroundService> logger) : BackgroundService
 {
     private readonly IServiceProvider _serviceProvider = serviceProvider;
-    private readonly ILogger<InboxProcessBackgroundSerice> _logger = logger;
+    private readonly ILogger<InboxProcessBackgroundService> _logger = logger;
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
