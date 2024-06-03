@@ -5,7 +5,7 @@ public static class InboxConfigure
     public static IServiceCollection ConfigureApplicationInbox(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<InboxService>();
-        services.AddHostedService<InboxProcessBackgroundSerice>();
+        services.AddHostedService<InboxProcessBackgroundService>();
 
         var appSettings = configuration.Get<AppSettings>();
 
