@@ -1,11 +1,11 @@
-﻿namespace Notify.Features.Sms;
+﻿namespace Notify.Features.Sms.Services;
 
 public class SmsService(SmsDbContext dbContext, IServiceProvider serviceProvider)
 {
     private readonly SmsDbContext _dbContext = dbContext;
     private readonly IServiceProvider _serviceProvider = serviceProvider;
 
-    public async Task SendAsync(Guid messageId,string mobile, string message, CancellationToken cancellationToken)
+    public async Task SendAsync(Guid messageId, string mobile, string message, CancellationToken cancellationToken)
     {
 
         foreach (var providerName in SmsConfiguration.Providers)

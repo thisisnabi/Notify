@@ -1,4 +1,6 @@
-﻿namespace Notify.Features.Sms.Handlers;
+﻿using Notify.Features.Sms.Services;
+
+namespace Notify.Features.Sms.Handlers;
 
 public class SendSmsHandler(SmsService smsService) : INotificationHandler<SendSmsMessage>
 {

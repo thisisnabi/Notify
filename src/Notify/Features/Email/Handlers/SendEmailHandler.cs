@@ -1,4 +1,6 @@
-﻿namespace Notify.Features.Email.Handlers;
+﻿using Notify.Features.Email.Services;
+
+namespace Notify.Features.Email.Handlers;
 
 public class SendEmailHandler(EmailService emailService) : INotificationHandler<SendEmailMessage>
 {
