@@ -1,5 +1,7 @@
-﻿using System.Net;
+﻿using Notify.Features.Email.Dtos;
+using System.Net;
 using System.Net.Mail;
+using System.Text;
 
 namespace Notify.Features.Email;
 
@@ -11,35 +13,80 @@ public class EmailService(
     private readonly EmailConfiguration _emailConfiguration = appsettingsOption.Value.Features.Email;
     private readonly EmailDbContext _dbContext = dbContext;
 
-    public async Task SendEmailAsync(string to, string subject, string body, Guid messageId, CancellationToken cancellationToken)
+    public async Task SendEmailAsync(EmailMessageDto emailMessageDto, CancellationToken cancellationToken)
     {
-        var smtpClient = new SmtpClient(_emailConfiguration.Host)
+        var trackId = OnSendEmail(emailMessageDto);
+
+        var emailTrace = CreateEmailTrace(emailMessageDto, trackId);
+
+        await OnSaveEmailTraces(emailTrace, cancellationToken);
+    }
+
+    #region [ Private ]
+
+    private string OnSendEmail(EmailMessageDto emailMessageDto)
+    {
+        var smtpClient = CreateSmtpClient();
+
+        var trackId = GenerateUniqueTrackId();
+
+        var mailMessage = CreateMailMessage(emailMessageDto, trackId);
+
+        smtpClient.Send(mailMessage);
+
+        return trackId;
+    }
+
+    private async Task OnSaveEmailTraces(EmailTrace emailTrace, CancellationToken cancellationToken)
+    {
+        await _dbContext.EmailTraces.AddAsync(emailTrace, cancellationToken);
+
+        await _dbContext.SaveChangesAsync(cancellationToken);
+    }
+
+    private SmtpClient CreateSmtpClient()
+        => new SmtpClient(_emailConfiguration.Host)
         {
             Port = _emailConfiguration.Port,
             Credentials = new NetworkCredential(_emailConfiguration.UserName, _emailConfiguration.Password),
             EnableSsl = true
         };
 
-        var trackId = GenerateUniqueTrackId();
-        var htmlBody = body + GenerateTrackingPixel(trackId);
+    private MailMessage CreateMailMessage(EmailMessageDto emailMessageDto, string trackId)
+    {
+        StringBuilder htmlBody = new StringBuilder();
 
-        var mailMessage = new MailMessage(_emailConfiguration.SenderEmail, to, subject, htmlBody);
+        htmlBody.Append(emailMessageDto.Body);
+        htmlBody.Append(GenerateTrackingPixel(trackId));
+
+        var mailMessage = new MailMessage(
+            _emailConfiguration.SenderEmail,
+            emailMessageDto.To,
+            emailMessageDto.Subject,
+            htmlBody.ToString());
+
         mailMessage.IsBodyHtml = true;
 
-        smtpClient.Send(mailMessage);
-
-        var emailTrace = EmailTrace.Create(to, subject, body, messageId, trackId);
-        await _dbContext.EmailTraces.AddAsync(emailTrace, cancellationToken);
-        await _dbContext.SaveChangesAsync(cancellationToken);
+        return mailMessage;
     }
 
-    public string GenerateTrackingPixel(string trackId)
+    private EmailTrace CreateEmailTrace(EmailMessageDto emailMessageDto, string trackId)
+        => EmailTrace.Create(emailMessageDto.To,
+            emailMessageDto.Subject,
+            emailMessageDto.Body,
+            emailMessageDto.MessageId,
+            trackId);
+
+    private string GenerateTrackingPixel(string trackId)
     {
         return $"<img width='1' height='1' src='{_appsettings.BaseUrl}/email/tracking/{trackId}'>";
     }
 
-    public string GenerateUniqueTrackId()
+    private string GenerateUniqueTrackId()
     {
         return Guid.NewGuid().ToString();
     }
+
+    #endregion [ Private ]
+
 }

@@ -1,4 +1,6 @@
-﻿namespace Notify.Features.Email.Handlers;
+﻿using Notify.Features.Email.Dtos;
+
+namespace Notify.Features.Email.Handlers;
 
 public class SendEmailHandler(EmailService emailService) : INotificationHandler<SendEmailMessage>
 {
@@ -6,10 +8,20 @@ public class SendEmailHandler(EmailService emailService) : INotificationHandler<
 
     public Task Handle(SendEmailMessage notification, CancellationToken cancellationToken)
     {
-        return _emailService.SendEmailAsync(notification.To, 
-            notification.Subject, 
-            notification.Body, 
-            notification.MessageId, 
-            cancellationToken);
+        var emailMessageDto = CreateEmailMessageDto(notification);
+
+        return _emailService.SendEmailAsync(emailMessageDto, cancellationToken);
     }
+
+    #region [ Private ]
+
+    private EmailMessageDto CreateEmailMessageDto(SendEmailMessage notification)
+        => new EmailMessageDto(
+            notification.MessageId,
+            notification.To,
+            notification.Subject,
+            notification.Body);
+
+    #endregion [ Private ]
+
 }
