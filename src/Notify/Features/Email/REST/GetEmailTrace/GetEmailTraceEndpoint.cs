@@ -1,4 +1,4 @@
-﻿namespace Notify.Features.Sms.REST.GetSmsTrace;
+﻿namespace Notify.Features.Email.REST.GetEmailTrace;
 
 public class GetEmailTraceEndpoint : ICarterModule
 {
@@ -9,17 +9,17 @@ public class GetEmailTraceEndpoint : ICarterModule
                    EmailDbContext dbContext,
                    CancellationToken cancellationToken) =>
         {
-            var smsTrace = await dbContext.EmailTraces.FirstOrDefaultAsync(x => x.MessageId == MessageId, cancellationToken);
+            var emailTrace = await dbContext.EmailTraces.FirstOrDefaultAsync(x => x.MessageId == MessageId, cancellationToken);
 
-            if (smsTrace is null)
+            if (emailTrace is null)
                 return Results.NotFound();
 
             return Results.Ok(new
             {
-                smsTrace.To,
-                smsTrace.Subject,
-                smsTrace.CreatedOn,
-                smsTrace.Status
+                emailTrace.To,
+                emailTrace.Subject,
+                emailTrace.CreatedOn,
+                emailTrace.Status
             });
         }).WithTags("Email");
     }

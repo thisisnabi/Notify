@@ -1,4 +1,5 @@
-﻿using Notify.Features.Email.Dtos;
+﻿using Notify.Features.Email.Services;
+using Notify.Features.Email.Dtos;
 
 namespace Notify.Features.Email.Handlers;
 
