@@ -22,8 +22,6 @@ public class EmailService(
         await OnSaveEmailTraces(emailTrace, cancellationToken);
     }
 
-    #region [ Private ]
-
     private string OnSendEmail(EmailMessageDto emailMessageDto)
     {
         var smtpClient = CreateSmtpClient();
@@ -86,7 +84,5 @@ public class EmailService(
     {
         return Guid.NewGuid().ToString();
     }
-
-    #endregion [ Private ]
 
 }

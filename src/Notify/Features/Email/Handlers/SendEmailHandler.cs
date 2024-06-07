@@ -14,15 +14,11 @@ public class SendEmailHandler(EmailService emailService) : INotificationHandler<
         return _emailService.SendEmailAsync(emailMessageDto, cancellationToken);
     }
 
-    #region [ Private ]
-
     private EmailMessageDto CreateEmailMessageDto(SendEmailMessage notification)
         => new EmailMessageDto(
             notification.MessageId,
             notification.To,
             notification.Subject,
             notification.Body);
-
-    #endregion [ Private ]
 
 }
