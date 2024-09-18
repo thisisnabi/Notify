@@ -3,6 +3,11 @@ global using System.Text.Json;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.Extensions.Options;
+global using System.Text;
+ global using System.Net;
+ global using System.Net.Mail;
+
+
 
 // third parties
 global using MediatR;
@@ -23,3 +28,5 @@ global using Notify.Features.Sms.Providers;
 global using Notify.Features.Email.Messages;
 global using Notify.Features.Email;
 global using Notify.Features.Sms.Services;
+global using Notify.Features.Email.Services;
+global using Notify.Features.Email.Dtos;

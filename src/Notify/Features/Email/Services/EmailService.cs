@@ -1,9 +1,4 @@
-﻿using Notify.Features.Email.Dtos;
-using System.Net;
-using System.Net.Mail;
-using System.Text;
-
-namespace Notify.Features.Email.Services;
+﻿namespace Notify.Features.Email.Services;
 
 public class EmailService(
     EmailDbContext dbContext,
