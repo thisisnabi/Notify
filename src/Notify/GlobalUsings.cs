@@ -22,3 +22,4 @@ global using Notify.Features.Sms;
 global using Notify.Features.Sms.Providers;
 global using Notify.Features.Email.Messages;
 global using Notify.Features.Email;
+global using Notify.Features.Sms.Services;

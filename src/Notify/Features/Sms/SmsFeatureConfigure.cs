@@ -1,6 +1,4 @@
-﻿using Notify.Features.Sms.Services;
-
-namespace Notify.Features.Sms;
+﻿namespace Notify.Features.Sms;
 
 public static class SmsFeatureConfigure
 {

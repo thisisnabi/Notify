@@ -43,7 +43,7 @@ public class EmailService(
     }
 
     private SmtpClient CreateSmtpClient()
-        => new SmtpClient(_emailConfiguration.Host)
+        => new(_emailConfiguration.Host)
         {
             Port = _emailConfiguration.Port,
             Credentials = new NetworkCredential(_emailConfiguration.UserName, _emailConfiguration.Password),
