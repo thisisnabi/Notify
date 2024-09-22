@@ -1,6 +1,4 @@
-﻿using Notify.Features.Email.Services;
-
-namespace Notify.Features.Email;
+﻿namespace Notify.Features.Email;
 
 public static class EmailFeatureConfigure
 {

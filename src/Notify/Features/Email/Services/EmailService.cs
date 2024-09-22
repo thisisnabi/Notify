@@ -1,9 +1,4 @@
-﻿using Notify.Features.Email.Dtos;
-using System.Net;
-using System.Net.Mail;
-using System.Text;
-
-namespace Notify.Features.Email.Services;
+﻿namespace Notify.Features.Email.Services;
 
 public class EmailService(
     EmailDbContext dbContext,
@@ -43,7 +38,7 @@ public class EmailService(
     }
 
     private SmtpClient CreateSmtpClient()
-        => new SmtpClient(_emailConfiguration.Host)
+        => new(_emailConfiguration.Host)
         {
             Port = _emailConfiguration.Port,
             Credentials = new NetworkCredential(_emailConfiguration.UserName, _emailConfiguration.Password),
