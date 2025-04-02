@@ -31,7 +31,9 @@ public class SmsService(SmsDbContext dbContext, IServiceProvider serviceProvider
 
     public async Task<SmsTraceStatus> InquiryAsync(SmsTrace message, CancellationToken cancellationToken = default)
     {
-        var provider = _serviceProvider.GetRequiredKeyedService<ISmsProvider>(message.Provider);
+        var provider = _smsProviders.FirstOrDefault(a => a.Name == message.Provider);
+        if (provider == null)
+            throw new Exception($"sms provider {message.Provider} not found use correct sms provider");
         return await provider.IquiryAsync(message.RefrenceId, cancellationToken);
     }
 }
