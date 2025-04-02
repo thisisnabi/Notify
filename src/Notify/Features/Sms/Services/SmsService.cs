@@ -1,18 +1,17 @@
 ﻿namespace Notify.Features.Sms.Services;
 
-public class SmsService(SmsDbContext dbContext, IServiceProvider serviceProvider)
+public class SmsService(SmsDbContext dbContext, IServiceProvider serviceProvider , IEnumerable<ISmsProvider> smsProviders)
 {
     private readonly SmsDbContext _dbContext = dbContext;
     private readonly IServiceProvider _serviceProvider = serviceProvider;
 
+    private readonly IEnumerable<ISmsProvider> _smsProviders = smsProviders;
+
     public async Task SendAsync(Guid messageId, string mobile, string message, CancellationToken cancellationToken)
     {
-
-        foreach (var providerName in SmsConfiguration.Providers)
+        foreach (var smsProvider in _smsProviders)
         {
-            var provider = _serviceProvider.GetRequiredKeyedService<ISmsProvider>(providerName);
-
-            var referenceId = await provider.SendAsync(mobile, message, cancellationToken);
+            var referenceId = await smsProvider.SendAsync(mobile, message, cancellationToken);
 
             if (string.IsNullOrEmpty(referenceId))
             {
@@ -20,13 +19,14 @@ public class SmsService(SmsDbContext dbContext, IServiceProvider serviceProvider
                 continue;
             }
 
-            var smsTrace = SmsTrace.Create(mobile, message, messageId, referenceId, provider.Name);
+            var smsTrace = SmsTrace.Create(mobile, message, messageId, referenceId, smsProvider.Name);
             await _dbContext.SmsTraces.AddAsync(smsTrace, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
             // end of try
             break;
         }
+       
     }
 
     public async Task<SmsTraceStatus> InquiryAsync(SmsTrace message, CancellationToken cancellationToken = default)
