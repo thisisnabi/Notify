@@ -1,4 +1,6 @@
-﻿namespace Notify.Features.Sms;
+﻿using System.Reflection;
+
+namespace Notify.Features.Sms;
 
 public static class SmsFeatureConfigure
 {
@@ -7,8 +9,15 @@ public static class SmsFeatureConfigure
         services.AddHostedService<InquirySmsBackgroundService>();
         services.AddScoped<SmsService>();
 
-        services.AddKeyedScoped<ISmsProvider, ProviderASmsProvider>("ProviderA");
-        services.AddKeyedScoped<ISmsProvider, ProviderBSmsProvider>("ProviderB");
+        // IoC of ISmsProvider
+        // This is dynamic DI based on ISmsProvider
+        var smsProviderType = typeof(ISmsProvider);
+        var types = Assembly.GetExecutingAssembly().GetTypes()
+                     .Where(t => smsProviderType.IsAssignableFrom(t) && t.IsClass && !t.IsAbstract);
+        foreach (var type in types)
+            services.AddScoped(smsProviderType, type);
+        // end
+
 
         var appSettings = configuration.Get<AppSettings>();
 
